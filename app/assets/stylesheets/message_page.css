@@ -117,6 +117,7 @@
 .message-button:is(:hover:focus) {
     color: #fff;
 }
+
 .message-button::after {
     content: "";
     inset: 0;
