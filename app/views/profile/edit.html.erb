@@ -16,25 +16,26 @@
                         </label>
                         <%= form.file_field :avatar, accept:'image/*' %>
                     </div>
-                    
-                        <p class="font-weight-bold h6"><%= $current_user.firstname %>&nbsp;&nbsp;<%= $current_user.surname %></p>
-                        <p class="text-white-20 h6"><%= $current_user.nickname %> </p>
+                        <p class="h6"><%= $current_user.firstname %>&nbsp;&nbsp;<%= $current_user.surname %></p>
+                        <p class="h6"><%= $current_user.nickname %> </p>
                         <p class="text-white-50 h6"><%= $current_user.email %> </p>
                     </div>
                 </div>
-                <div class="col-md-5 border-right bg-primary">
+                <div class="col-md-5 border-right bg-dark">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
                             <div class="row mt-2">
-                                <div class="col-md-6"><label class="labels">Name</label><%= text_field_tag "firstname",nil,autocomplete: "off",class:"form-control",autocomplete: "off",placeholder:"Firstname" %></div>
-                                <div class="col-md-6"><label class="labels">Surname</label><%= text_field_tag "surname",nil,autocomplete: "off",class:"form-control",autocomplete: "off",placeholder:"Surname" %></div>
+                                <div class="col-md-6"><label class="labels">Name</label><%= text_field_tag "firstname",nil,autocomplete: "off",onchange:"validateFirstname('firstname')",class:"form-control",autocomplete: "off",placeholder:"Firstname" %></div>
+                                <div class="col-md-6"><label class="labels">Surname</label><%= text_field_tag "surname",nil,autocomplete: "off",onchange:"validateSurname('surname')",class:"form-control",autocomplete: "off",placeholder:"Surname" %></div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col text-center"><label class="labels">Nickname</label><%= text_field_tag "nickname",nil,class:"form-control",autocomplete: "off",placeholder:"Nickname" %></div>
+                                <div class="col text-center"><label class="labels">Nickname</label><%= text_field_tag "nickname",nil,onchange:"validateNickname('nickname')",class:"form-control mt-2",autocomplete: "off",placeholder:"Nickname" %></div>
                             </div>
-                            <div class="mt-5 text-center"> <button class="change-button" type="submit">Save Profile </button></div>
+                            <div class="mt-5 text-center">
+                                <%= submit_tag "Save Profile",id:"save_profile_btn",onclick:"validateNickname('nickname'),validateSurname('surname'),validateFirstname('firstname')",class:"change-button" %>
+                            </div>
                         <% end %>
                     </div>
                 </div>
@@ -42,3 +43,38 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function validateFirstname(firstname) {
+            const inputFirstname = document.getElementById(firstname).value;
+            if (inputFirstname.length > 0 ){
+                document.getElementById(firstname).className = "form-control profile-valid"
+            }
+            else {
+                document.getElementById('save_profile_btn').disabled = true;
+                document.getElementById(firstname).className = "form-control profile-invalid"
+            }
+        }
+
+        function validateSurname(surname) {
+            const inputSurname = document.getElementById(surname).value;
+            if (inputSurname.length > 0) {
+                document.getElementById(surname).className = "form-control profile-valid"
+            }
+            else {
+                document.getElementById('save_profile_btn').disabled = true;
+                document.getElementById(surname).className = "form-control profile-invalid"
+            }
+        }
+
+        function validateNickname(nickname) {
+            const inputNickname = document.getElementById(nickname).value;
+            if (inputNickname.length > 0) {
+                
+                document.getElementById(nickname).className = "form-control profile-valid mt-2"
+            }
+            else {
+                document.getElementById('save_profile_btn').disabled = true;
+                document.getElementById(nickname).className = "form-control profile-invalid mt-2"
+            }
+        }
+</script>

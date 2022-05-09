@@ -1,28 +1,35 @@
 class PostsController < ApplicationController
+  before_action :validate
   before_action :set_post, only: %i[ show edit update destroy ]
 
-  # GET /posts or /posts.json
   def index
     @posts = Post.all
   end
 
-  # GET /posts/1 or /posts/1.json
   def show
+      unless @post.user == $current_user
+        redirect_to home_path
+      end
   end
 
-  # GET /posts/new
   def new
     @post = Post.new
   end
 
-  # GET /posts/1/edit
   def edit
-    unless @post.user == $current_user
-      redirect_to home_path
+    if @posts.find_by(id: params[:id])
+      unless @post.user == $current_user
+        redirect_to home_path
+      end
     end
   end
 
-  # POST /posts or /posts.json
+  def validate 
+    unless session[:user_id]
+      redirect_to login_path
+    end
+  end
+
   def create
     @post = Post.new(post_params)
     @user = User.all
@@ -39,7 +46,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -52,7 +58,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
   def destroy
     @post.destroy
 
@@ -63,12 +68,10 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:body)
     end

@@ -31,7 +31,6 @@ body {
     text-align: center;
     margin-top: 25px;
     font-size: 15px;
-    font-weight: bold;
     cursor: pointer;
     outline: none;
     resize: none;
@@ -157,7 +156,7 @@ body {
     border-radius:7px;
     background-color: #74959A;
     padding: 1vh;
-    width: 90%;
+    width: 95%;
     margin: 1vh auto;
 }
 .friends-container .friends-wrapper .friends-name {

@@ -23,10 +23,10 @@
                     </div>
                     <div class="social mt-2">
                         <% if post.user_id  == $current_user.id%>
-                            <%= button_to post, method: :delete  do%> <i class=" fa fa-times" aria-hidden="true"></i> <% end %>
+                            <%= button_to post, method: :delete  do%> <i class=" fa fa-times"></i> <% end %>
                             <%= link_to  edit_post_path(post) do %> <i class="mx-2 fa fa-pencil"></i><% end %>
                         <% end %>
-                        <a href="#" class="mx-2 px-2"><i class="fa fa-heart" aria-hidden="true"></i> </a>
+                        <a href="#" class="mx-2 px-2"><i class="fa fa-heart"></i> </a>
                     </div>
                 </div>
             <% end %>

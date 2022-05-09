@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_many :posts, dependent: :destroy
-    has_many :friends , dependent: :destroy
+    has_many :friends 
+    has_many :messages
     
     has_one_attached :avatar 
     
