@@ -1,0 +1,77 @@
+<%= stylesheet_link_tag "message_page", "data-turbo-track": "reload" %>
+
+<div class="messenger-container">
+    <div class="messenger-wrap">
+        <div class="messenger-left">
+            <div class="messenger-left-wrap">
+                <div class="messenger-left-header text-center">
+                    <h1 class="display-6 text-white-50">Friends</h1>
+                    <hr class="text-white"/>
+                </div>
+                <div class="messenger-left-body">
+                    <% @message_friends.each do |user| %>
+                        <div class="messenger-left-body-wrap mt-2">
+                            <div class="messenger-left-body-avatar">
+                                <% if user.avatar.attached? %>
+                                    <%= image_tag(user.avatar, :alt => "logo",height:64,width:64,class:"mx-2 rounded-circle") %>
+                                <% else %>
+                                    <%= image_tag("default.jpg", :alt => "logo",height:64,width:64,class:"mx-2 rounded-circle") %>
+                                <% end %>
+                            </div>
+                            <h1 class="mt-2 mx-3"> <%= user.firstname %> <%= user.surname %> <h1>
+                        </div>
+                        <hr class="text-white"/>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+        <div class="messenger-right mx-4">
+            <div class="messenger-right-wrap">
+                <div class="messenger-right-header text-center">
+                    <h1 class="display-6 text-white">Chat</h1>
+                    <hr class="text-white"/>
+                </div>
+                <div class="messenger-right-body">
+                    <div class="messenger-right-top">
+                        <div class="messenger-right-top-message text-end">
+                            <div class="messenger-right-top-message-header">
+                                <% if $current_user.avatar.attached? %>
+                                    <%= image_tag($current_user.avatar, :alt => "logo",height:48,width:48,class:"mx-2 rounded-circle")  %>
+                                <% else %>
+                                    <%= image_tag("default.jpg", :alt => "logo",height:48,width:48,class:"mx-2 rounded-circle")  %>
+                                <% end %>
+                                <h1><%= $current_user.firstname %></h1>
+                            </div>
+                            <hr class="text-white" style="width:100%"/>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                        </div>
+                        <div class="messenger-right-top-message">
+                            <div class="messenger-right-top-message-header">
+                                <% if $current_user.avatar.attached? %>
+                                    <%= image_tag($current_user.avatar, :alt => "logo",height:48,width:48,class:"mx-2 rounded-circle")  %>
+                                <% else %>
+                                    <%= image_tag("default.jpg", :alt => "logo",height:48,width:48,class:"mx-2 rounded-circle")  %>
+                                <% end %>
+                                <h1><%= $current_user.firstname %></h1>
+                            </div>
+                            <hr class="text-white" style="width:100%"/>
+                            <div>
+                                <p > Nice!u ? </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="messenger-right-bottom text-center">
+                        <div >
+                            <label class="text-white">Message</label>
+                        </div>
+                        <textarea class="create-message" id="message" rows="4"></textarea>
+                        <button class="message-button mb-2" id="send-message">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

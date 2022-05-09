@@ -1,0 +1,36 @@
+<div class="user-container">
+    <div class="user-container-inner">
+        <div class="user-top text-center">
+            <% if @user.avatar.attached? %>
+                <%= image_tag(@user.avatar, :alt => "logo",height:128,width:128,class:"rounded-circle mt-2 mx-5")  %>
+            <% else %>
+                <%= image_tag("default.jpg", :alt => "logo",height:128,width:128,class:"rounded-circle mt-5 mb-2")  %>
+            <% end %>
+            <h1 class="display-6"><%= @user.firstname %> <%= @user.surname %></h1>
+            <h1 ><%= @user.email %></h1>
+            <hr class="text-white"/>
+        </div>
+        
+        <div class="user-bottom"> 
+        <h1 class="display-6"><%= @user.firstname %> Posts:</h1>
+        <% @posts.each do |post|  %>
+            <% if  post.user_id == @user.id %>
+                <div class="user-post-content">
+                    <div class="user-post-bottom text-center ">
+                        <div>
+                            <h1> <%= render post %> </h1>
+                        </div>
+                    </div>
+                    <div class="social mt-2">
+                        <% if post.user_id  == $current_user.id%>
+                            <%= button_to post, method: :delete  do%> <i class=" fa fa-times" aria-hidden="true"></i> <% end %>
+                            <%= link_to  edit_post_path(post) do %> <i class="mx-2 fa fa-pencil"></i><% end %>
+                        <% end %>
+                        <a href="#" class="mx-2 px-2"><i class="fa fa-heart" aria-hidden="true"></i> </a>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+        </div>
+    </div>
+</div>

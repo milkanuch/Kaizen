@@ -1,0 +1,44 @@
+
+<div class="container d-flex align-items-center justify-content-center ">
+    <div class="profile-container rounded text-white">
+        <div class="row">
+            <div class="col-md-3 border-right bg-secondary">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <%= form_with url: update_user_path($current_user),local:true,method: :post do |form| %>
+                    <% if $current_user.avatar.attached? %>
+                        <%= image_tag($current_user.avatar, :alt => "logo",height:64,width:64,class:"rounded-circle mt-5 mb-2")  %>
+                    <% else %>
+                        <%= image_tag("default.jpg", :alt => "logo",height:64,width:64,class:"rounded-circle mt-5 mb-2")  %>
+                    <% end %>
+                    <div class="image-upload">
+                        <label for="avatar">
+                            <img src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png" style="cursor:pointer" width="64px" height="64px"/>
+                        </label>
+                        <%= form.file_field :avatar, accept:'image/*' %>
+                    </div>
+                    
+                        <p class="font-weight-bold h6"><%= $current_user.firstname %>&nbsp;&nbsp;<%= $current_user.surname %></p>
+                        <p class="text-white-20 h6"><%= $current_user.nickname %> </p>
+                        <p class="text-white-50 h6"><%= $current_user.email %> </p>
+                    </div>
+                </div>
+                <div class="col-md-5 border-right bg-primary">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Profile Settings</h4>
+                        </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6"><label class="labels">Name</label><%= text_field_tag "firstname",nil,autocomplete: "off",class:"form-control",autocomplete: "off",placeholder:"Firstname" %></div>
+                                <div class="col-md-6"><label class="labels">Surname</label><%= text_field_tag "surname",nil,autocomplete: "off",class:"form-control",autocomplete: "off",placeholder:"Surname" %></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col text-center"><label class="labels">Nickname</label><%= text_field_tag "nickname",nil,class:"form-control",autocomplete: "off",placeholder:"Nickname" %></div>
+                            </div>
+                            <div class="mt-5 text-center"> <button class="change-button" type="submit">Save Profile </button></div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

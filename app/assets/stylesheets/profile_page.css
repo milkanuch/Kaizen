@@ -1,0 +1,25 @@
+.image-upload>input {
+    display: none;
+}
+
+.profile-container{
+    width: 100%;
+    height: 100%;
+    margin-top: 22vh;
+    margin-left: 29vw;
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.change-button:hover {
+    background: #46c4c9;
+    color: #ffffff;
+}
+

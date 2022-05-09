@@ -1,0 +1,224 @@
+.gradient-custom {
+    background-color: #373f55;
+    color:#F1E0AC;
+}
+.gradient-custom a{
+    color:#F1E0AC;
+    text-decoration: none;
+    font-size: 38px;
+}   
+.gradient-custom a:hover{
+    color: #4af1f7;
+}
+
+body {
+    background: linear-gradient(147deg, #1a1a1a 0%, #2c3e50 74%);
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.create-post {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande';
+    width: 90%;
+    height: 120px;
+    background-color: #373f55;
+    color: #f7f3e9;
+    border: 2px solid #F1E0AC;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    resize: none;
+}
+
+::-webkit-scrollbar {
+    background: #373f55;
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    border-radius: 50px;
+    background: #373f55;
+}
+::-webkit-scrollbar-thumb {
+    
+    background: #4af1f7;
+    border-radius: 50px;
+}
+.main-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.side-navbar, .navbar-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+    background: #495371;
+    background-repeat: repeat;
+    background-size: cover;
+    width: 250px;
+}
+.side-navbar .navbar-menu {
+    list-style: none;
+    padding: 100px 0;
+    width: 250px;
+
+}
+.side-navbar .navbar-item{
+    padding: 10px 40px;
+}
+.navbar-item  a:hover{
+    color: #39e974;
+}
+.menu-text {
+    color: #f3dfe9;
+    font-size: 24px;
+    padding: 0 20px;
+}
+.navbar-item a {
+    text-decoration: none;
+    color: #c8f8f6;
+}
+
+.menu-text:hover{
+    color: #a5a1c4;
+    cursor: pointer;
+}
+
+
+.button { 
+    -webkit-border-radius: 16;
+    -moz-border-radius: 16;
+    border-radius: 16px;
+    border: none;
+    font-family: Arial;
+    color: #c8f8f6;
+    font-size: 20px;
+    padding: 0 2vh;
+    background: #495371;
+    text-decoration: none;
+}
+.button:hover{
+    color: #39e974;
+}
+.post-top { 
+    width: 100%;
+}
+.post-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-basis: 44%;
+    margin-left: 28vw;
+    height: 100vh;
+}
+.post-wrapper { 
+    width: 70%;
+}
+.post-content{
+    border-radius:7px;
+    text-align: center;
+    background-color: #5D8BF4;
+    padding: 1vh;
+    margin: 1vh auto;
+}
+.post-content .post-top img{
+    margin-top: 5px;
+}
+.post-content .post-bottom {
+    padding: 1vh;
+    background-color: #547ddd;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.friends-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #495371;
+    border-radius: 0 0 1vw 1vw;
+    flex-basis: 20%;
+    min-height: 100vh;
+}
+.friends-container .friends-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    text-align: center;
+    border-radius:7px;
+    background-color: #74959A;
+    padding: 1vh;
+    width: 90%;
+    margin: 1vh auto;
+}
+.friends-container .friends-wrapper .friends-name {
+    text-decoration: none;
+    font-size: 24px;
+    color:#fff;
+}
+
+.friends-container .friends-wrapper i{
+    color: #81e65a;
+}
+
+.follow-btn{
+    -webkit-border-radius: 15;
+    -moz-border-radius: 15;
+    border-radius: 15px;
+    border: none;
+    padding: 1vh;
+    color: #fff;
+    font-size: 18px;
+    background: #d93463;
+    text-decoration: none;
+}
+.follow-btn:hover{
+    color: rgb(177, 177, 177);
+    background: #34d994;
+    -webkit-box-shadow: 3px 4px 30px #00ff62;
+    -moz-box-shadow: 3px 4px 30px #00ff62;
+    box-shadow: 3px 4px 30px #00ff62;
+}
+.post-button { 
+    position: absolute;
+    top: 19.5vh;
+    background-color: #373f55;
+    border: 2px solid #F1E0AC;
+    color: #ffffff;
+    right: 36.2vw;
+    z-index: 20;
+}
+.unfollow-btn {
+    -webkit-border-radius: 15;
+    -moz-border-radius: 15;
+    border-radius: 15px;
+    border: none;
+    padding: 1vh;
+    color: #fff;
+    font-size: 18px;
+    background: #34d994;
+    text-decoration: none;
+}
+.unfollow-btn:hover { 
+    color: rgb(177, 177, 177);
+    background: #d93463;
+    -webkit-box-shadow: 3px 4px 30px #992c4b;
+    -moz-box-shadow: 3px 4px 30px #992c4b;
+    box-shadow: 3px 4px 30px #992c4b;
+}
+.post-container .post-wrapper i:hover{
+    animation: rotate 2s infinite;
+}
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+

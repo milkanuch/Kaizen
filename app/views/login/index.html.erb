@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kaizen</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <%= favicon_link_tag 'katana.png' %>
+        <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../assets/stylesheets/login_page.scss">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    </head>
+    <body class="body">
+        <div class="section">
+            <div class="container">
+                <div class="row full-height justify-content-center">
+                    <div class="col-12 text-center align-self-center py-5">
+                        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                            <h6 class="mb-0 pb-3"><span>Sign In </span><span>Sign Up</span></h6>
+                            <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                            <label for="reg-log"></label>
+                            
+                            <div class="card-3d-wrap mx-auto">
+                                <div class="card-3d-wrapper">
+                                    <div class="card-front">
+                                        <div class="center-wrap">
+                                            <div class="section text-center">
+                                                <h4 class="mb-4 pb-3">Sign In</h4>
+                                                <%= form_with url: signin_path,class:"form-group",local:true,method: :post do%>
+                                                        <i class="input-icon uil uil-at"></i>
+                                                        <%= email_field_tag "e_mail",nil,autocomplete: "off",class:"form-style",onchange:"checkEmailFilled('e_mail')",placeholder:"Your E-mail" %>
+                                                    </div>	
+                                                    <div class="form-group mt-2">
+                                                        <i class="input-icon uil uil-lock"></i>
+                                                        <%= password_field_tag "password",nil,autocomplete: "off",class:"form-style",onchange:"checkPasswordFilled('password','submit_btn','validate_text')",placeholder:"Your Password" %>
+                                                    </div>
+                                                    <%= submit_tag "submit",id:"submit_btn",placeholder:"Submit",class:"btn mt-4 pt-2 text-white" %>
+                                                    <p class="mb-0 mt-4 text-center link" id="validate_text"></p>
+                                                <% end %>
+                                        </div>  
+                                    </div>
+
+                                    <div class="card-back">
+                                        <div class="center-wrap">
+                                            <div class="section text-center">
+                                                <h4 class="mb-2 pb-3">Sign Up</h4>
+                                                    <%= form_with url: signup_path,class:"form-group",local:true,method: :post do%>
+                                                        <div class="personal mb-1">
+                                                            <i class="input-icon uil uil-user"></i>
+                                                            <%= text_field_tag :reg_firstname,nil,autocomplete: "off",class:"form-style",onchange:"validateFirstname('reg_firstname')",style:"width:47%",placeholder:"Firstname" %>
+                                                            <i class="surname-icon input-icon uil uil-users-alt"></i>
+                                                            <%= text_field_tag :reg_surname,nil,autocomplete: "off",class:"form-style",onchange:"validateSurname('reg_surname')",style:"width:47%",placeholder:"Surname" %>
+                                                        </div>
+                                                        <div>
+                                                            <i class="nickname-icon input-icon uil uil-github"></i>
+                                                            <%= text_field_tag :reg_nickname,nil,autocomplete: "off",class:"form-style",onchange:"validateNickname('reg_nickname')",placeholder:"Nickname" %>
+                                                        </div>	
+                                                        <div class="form-group mt-2">
+                                                            <i class="input-icon uil uil-at"></i>
+                                                            <%= email_field_tag :reg_email,nil,autocomplete: "off",class:"form-style",onchange:"checkEmailFilled('reg_email')",placeholder:"E-mail" %>
+                                                        </div>	
+                                                        <div class="form-group mt-2">
+                                                            <i class="input-icon uil uil-lock"></i>
+                                                            <%= password_field_tag :reg_password,nil,autocomplete: "off",class:"form-style",onchange:"checkPasswordFilled('reg_password','reg_submit_btn','reg_validate_text')",placeholder:"Password" %>
+                                                        </div>
+                                                            <%= submit_tag "submit",id:"reg_submit_btn",onclick:"validateNickname('reg_nickname'),validateSurname('reg_surname'),validateFirstname('reg_firstname')",placeholder:"Submit",class:"btn mt-4 pt-2 text-white" %>
+                                                        <p class="mb-2 mt-2 text-center link" id="reg_validate_text"></p>
+                                                    <% end %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        function checkEmailFilled(email) { 
+            var inputEmail = document.getElementById(email).value;
+            if (validateEmail(inputEmail)) {
+                document.getElementById(email).className = "form-style valid"
+            }
+            else {
+                document.getElementById(email).className = "form-style invalid"
+            }
+        }
+
+        function validateEmail(email) {
+            var reg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            return reg.test(email);
+        }
+
+        function checkPasswordFilled(password,btn_id,validate_text) {
+            var inputPassword = document.getElementById(password).value;
+            if (validatePassword(inputPassword)) {
+                document.getElementById(password).className = "form-style valid"
+                document.getElementById(btn_id).disabled = false;
+                document.getElementById(validate_text).innerHTML = ""
+            }
+            else {
+                document.getElementById(validate_text).innerHTML = "Password must be at least 6 characters long,one number and one uppercase and lowercase letter";
+                document.getElementById(password).className = "form-style invalid"
+                document.getElementById(btn_id).disabled = true
+            }
+        }
+
+        function validatePassword(password) {
+            var reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+            return reg.test(password);
+        }
+
+        function validateFirstname(firstname) {
+            var inputFirstname = document.getElementById(firstname).value;
+            if (inputFirstname.length > 0 ){
+                document.getElementById(firstname).className = "form-style valid"
+            }
+            else {
+                document.getElementById('reg_submit_btn').disabled = true;
+                document.getElementById(firstname).className = "form-style invalid"
+            }
+        }
+
+        function validateSurname(surname) {
+            var inputSurname = document.getElementById(surname).value;
+            if (inputSurname.length > 0) {
+                document.getElementById(surname).className = "form-style valid"
+            }
+            else {
+                document.getElementById('reg_submit_btn').disabled = true;
+                document.getElementById(surname).className = "form-style invalid"
+            }
+        }
+
+        function validateNickname(nickname) {
+            var inputNickname = document.getElementById(nickname).value;
+            if (inputNickname.length > 0) {
+                
+                document.getElementById(nickname).className = "form-style valid"
+            }
+            else {
+                document.getElementById("reg_submit_btn").disabled = true;
+                document.getElementById(nickname).className = "form-style invalid"
+            }
+        }
+    </script>
+</html>
