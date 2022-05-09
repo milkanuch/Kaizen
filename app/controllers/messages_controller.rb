@@ -7,7 +7,6 @@ class MessagesController < ApplicationController
             @friends.find_by(friend_id: user.id)
         end
     end
-
     def validate 
         unless session[:user_id]
             redirect_to login_path
