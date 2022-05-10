@@ -54,6 +54,19 @@
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+.message-body { 
+    background: rgba(20, 85, 123, 0.178);
+    box-shadow: 0 8px 32px 0 rgba(135, 31, 79, 0.37);
+    backdrop-filter: blur( 1.5px );
+    -webkit-backdrop-filter: blur( 1.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding:10px;
+    width:50%;
+    border-radius: 10px;
+    color: white;
+    align-self: flex-start;
+}
 
 .messenger-right-wrap {
     display: flex;

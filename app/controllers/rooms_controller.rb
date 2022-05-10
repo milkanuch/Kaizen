@@ -11,9 +11,8 @@ class RoomsController < ApplicationController
         @user = User.find(params[:id])
         @messages = @user.messages
 
-        @room_users = [@current_user.id,@user.id].sort!
-
-        @room = Room.where(first_user_id:@room_users[0]  , second_user_id: @room_users[1]).first || Room.create_room(@room_users)
+        @room_name = get_name(@user.id, @current_user.id)
+        @room = Room.where(name: @room_name).first || Room.create_private_room([@user, @current_user], @room_name)
         
         @message_friends = friends_search
         
@@ -43,5 +42,11 @@ class RoomsController < ApplicationController
         unless session[:user_id]
             redirect_to login_path
         end
+    end
+    private
+
+    def get_name(user1, user2)
+        user = [user1, user2].sort
+        "private_#{user[0]}_#{user[1]}"
     end
 end

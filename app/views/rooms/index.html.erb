@@ -63,8 +63,8 @@
                     <% if @room %>
                         <% @messages.each do |message| %>
                         <div class="messenger-right-top-message">
-                            <div class="<%= "cont-#{@current_user.id}" %>">
-                                <div class="<%= "msg-#{@current_user.id}" %>">
+                            <div class="<%= "cont-#{message.user.id}" %>">
+                                <div class="message-body <%= "msg-#{message.user.id}" %>">
                                     <h6> <%= message.user.nickname %> </h6>
                                     <p> <%= message.message_body %> </p>
                                 </div>

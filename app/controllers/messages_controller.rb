@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
         @current_user = @users.find_by email: session[:email]
         if msg_params[:content].length > 0
             @message = @current_user.messages.create(message_body: msg_params[:content], room_id: params[:room_id])
-            redirect_to room_path(params[:room_id])
+            redirect_back(fallback_location: :home_path)
         else 
             puts "Message is empty"
         end
