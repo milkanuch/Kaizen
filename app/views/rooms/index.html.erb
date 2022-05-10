@@ -62,9 +62,11 @@
                         <div >
                             <label class="text-white">Message</label>
                         </div>
-                        <%= form_with(model: [@message,@room],class:"d-flex flex-column") do |form| %>
-                            <%= form.text_field :content,autocomplete: 'off',class:"create-message" %>
-                            <button class="message-button mb-2" id="send-message">Send</button>
+                        <% if @room %>
+                            <%= form_with(model: [@room,@message],class:"d-flex flex-column") do |form| %>
+                                <%= form.text_field :content,autocomplete: 'off',class:"create-message" %>
+                                <button class="message-button mb-2" id="send-message">Send</button>
+                            <% end %>
                         <% end %>
                     </div>
                 </div>

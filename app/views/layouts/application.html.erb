@@ -30,7 +30,7 @@
                   <li class="navbar-item"><a class="fa fa-user "></a><%= submit_tag "Edit Profile",class:"button" %></li>
                 <% end %>
               <% end %>
-              <%= form_with url: chat_path,local:true,method: :get do %>
+              <%= form_with url: rooms_path,local:true,method: :get do %>
                 <li class="navbar-item"><a class="fa fa-paper-plane"></a><%= submit_tag "Messages",class:"button" %></li>
               <% end %>
               <%= form_with url: signout_path,local:true,method: :post do %>
