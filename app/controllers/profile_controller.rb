@@ -4,6 +4,7 @@ require 'json'
 
 class ProfileController < ApplicationController
     before_action :validate
+    before_action :get_current_user
     before_action :set_user, only: %i[update_user index]
 
     def index
@@ -31,6 +32,11 @@ class ProfileController < ApplicationController
             print "some validation... coming soon..."
         end
     end
+
+    def get_current_user
+        @users = User.all
+        @current_user = @users.find_by email: session[:email]
+    end 
 
     def validate 
         unless session[:user_id]

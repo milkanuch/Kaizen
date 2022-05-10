@@ -22,8 +22,8 @@
     <div>
       <div class="side-navbar">
           <ul class="navbar-menu">
-            <% unless $current_user.nil? %>
-                <%= form_with url: profile_path($current_user),local:true,method: :get do %>
+            <% unless @current_user.nil? %>
+                <%= form_with url: profile_path(@current_user),local:true,method: :get do %>
                   <li class="navbar-item"><a class="fa fa-user "></a><%= submit_tag "Profile",class:"mx-3 button" %></li>
                 <% end %>
                 <%= form_with url: edit_path,local:true,method: :get do %>

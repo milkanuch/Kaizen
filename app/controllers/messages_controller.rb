@@ -2,9 +2,15 @@ class MessagesController < ApplicationController
     before_action :validate
 
     def create
-        @message = $current_user.messages.create(message_body: msg_params[:content], room_id: params[:room_id])
+        @users = User.all
+        @current_user = @users.find_by email: session[:email]
+        if msg_params[:content].length > 0
+            @message = @current_user.messages.create(message_body: msg_params[:content], room_id: params[:room_id])
+            redirect_to room_path(params[:room_id])
+        else 
+            puts "Message is empty"
+        end
     end
-
 
     def validate 
         unless session[:user_id]

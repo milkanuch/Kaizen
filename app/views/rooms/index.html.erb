@@ -1,3 +1,23 @@
+<style>
+    <%= ".msg-#{@current_user.id}" %>{
+        background: rgba( 123, 20, 75, 0.05 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 1.5px );
+        -webkit-backdrop-filter: blur( 1.5px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        padding:10px;
+        width:50%;
+        border-radius: 10px;
+        color: white;
+        align-self: flex-start;
+    }
+    <%= ".cont-#{@current_user.id}" %>{
+        display:flex;
+        justify-content:flex-end;
+    }
+</style>
+
 <div class="messenger-container">
     <div class="messenger-wrap">
         <div class="messenger-left">
@@ -26,45 +46,39 @@
         <div class="messenger-right mx-4">
             <div class="messenger-right-wrap">
                 <div class="messenger-right-header text-center">
-                    <h1 class="display-6 text-white">Chat</h1>
+                <% if @friend %>
+                    <h1 class="display-6 text-white">Chat with <%= @friend.nickname %> </h1>
+                    <% if @friend.avatar.attached? %>
+                        <%= image_tag(@friend.avatar, :alt => "logo",height:64,width:64,class:"mx-2 rounded-circle")  %>
+                    <% else %>
+                        <%= image_tag("default.jpg", :alt => "logo",height:64,width:64,class:"mx-2 rounded-circle")  %>
+                    <% end %>
+                <% else %>
+                    <h1 class="display-6 text-white">Chat </h1>
+                <%end %>
                     <hr class="text-white"/>
                 </div>
                 <div class="messenger-right-body">
                     <div class="messenger-right-top">
-                        <div class="messenger-right-top-message text-end">
-                            <div class="messenger-right-top-message-header">
-                                <% if $current_user.avatar.attached? %>
-                                    <%= image_tag($current_user.avatar, :alt => "logo",height:48,width:48,class:"mx-2 rounded-circle")  %>
-                                <% else %>
-                                    <%= image_tag("default.jpg", :alt => "logo",height:48,width:48,class:"mx-2 rounded-circle")  %>
-                                <% end %>
-                                <h1><%= $current_user.firstname %></h1>
-                            </div>
-                            <hr class="text-white" style="width:100%"/>
-                            <p>Lor </p>
-                        </div>
+                    <% if @room %>
+                        <% @messages.each do |message| %>
                         <div class="messenger-right-top-message">
-                            <div class="messenger-right-top-message-header">
-                                <% if $current_user.avatar.attached? %>
-                                    <%= image_tag($current_user.avatar, :alt => "logo",height:48,width:48,class:"mx-2 rounded-circle")  %>
-                                <% else %>
-                                    <%= image_tag("default.jpg", :alt => "logo",height:48,width:48,class:"mx-2 rounded-circle")  %>
-                                <% end %>
-                                <h1><%= $current_user.firstname %></h1>
+                            <div class="<%= "cont-#{@current_user.id}" %>">
+                                <div class="<%= "msg-#{@current_user.id}" %>">
+                                    <h6> <%= message.user.nickname %> </h6>
+                                    <p> <%= message.message_body %> </p>
+                                </div>
                             </div>
                             <hr class="text-white" style="width:100%"/>
-                            <div>
-                                <p > Nice!u ? </p>
-                            </div>
                         </div>
+                        <% end %>
                     </div>
                     <div class="messenger-right-bottom text-center">
                         <div >
                             <label class="text-white">Message</label>
                         </div>
-                        <% if @room %>
                             <%= form_with(model: [@room,@message],class:"d-flex flex-column") do |form| %>
-                                <%= form.text_field :content,autocomplete: 'off',class:"create-message" %>
+                                <%= form.text_area :content,autocomplete: 'off',class:"create-message" %>
                                 <button class="message-button mb-2" id="send-message">Send</button>
                             <% end %>
                         <% end %>

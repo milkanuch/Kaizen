@@ -10,7 +10,7 @@
             <h1 class="text-white display-6">Posts </h1>
         </div>
         <% @posts.each do |post|  %>
-            <% if @friends.find_by(friend_id: post.user_id) || post.user_id == $current_user.id %>
+            <% if @friends.find_by(friend_id: post.user_id) || post.user_id == @current_user.id %>
                 <div class="post-content">
                     <div class="post-top">
                         <% if post.user.avatar.attached? %>
@@ -26,7 +26,7 @@
                         </p>
                     </div>
                     <div class="social mt-2">
-                        <% if post.user_id  == $current_user.id%>
+                        <% if post.user_id  == @current_user.id%>
                             <%= button_to post, method: :delete  do%> <i class="fa fa-times" aria-hidden="true"></i> <% end %>
                             <%= link_to  edit_post_path(post) do %> <i class="fa fa-pencil"></i><% end %>
                         <% end %>
@@ -50,9 +50,9 @@
             <%= link_to profile_path(user.id),style:"text-decoration:none" do %><p class="friends-name mt-3"><%= user.firstname %> <%= user.surname %></p><% end %>
             <div>
                 <% if @friends.find_by(friend_id: user.id) %>
-                    <%= button_to unfollow_path(friend: { friend_id: user.id,user_id: $current_user.id }),method: :post,class:"unfollow-btn text-white" do %> Unfollow <i class="fa fa-check" style="color:#ca6d87"> </i><% end %>
+                    <%= button_to unfollow_path(friend: { friend_id: user.id,user_id: @current_user.id }),method: :post,class:"unfollow-btn text-white" do %> Unfollow <i class="fa fa-check" style="color:#ca6d87"> </i><% end %>
                 <% else %>
-                    <%= button_to follow_path(friend: { friend_id: user.id,user_id: $current_user.id }),method: :post,class:"follow-btn text-white" do %> Follow <i class="fa fa-check"> </i><% end %>
+                    <%= button_to follow_path(friend: { friend_id: user.id,user_id: @current_user.id }),method: :post,class:"follow-btn text-white" do %> Follow <i class="fa fa-check"> </i><% end %>
                 <% end %>
             </div>
         </div>

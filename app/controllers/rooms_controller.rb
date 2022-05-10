@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
     before_action :validate
+    before_action :get_current_user 
     before_action :friends_search, only: %i[:index, :show]
 
     def index
@@ -9,20 +10,31 @@ class RoomsController < ApplicationController
     def show 
         @user = User.find(params[:id])
         @messages = @user.messages
+
+        @room_users = [@current_user.id,@user.id].sort!
+
+        @room = Room.where(first_user_id:@room_users[0]  , second_user_id: @room_users[1]).first || Room.create_room(@room_users)
         
-        @room = Room.where(first_user_id: $current_user.id, second_user_id: @user.id).first || Room.create_private_room([$current_user, @user])
         @message_friends = friends_search
+        
+        @friend = @message_friends.find { |user| user.id == @user.id }
         
         @message = Message.new
         @messages = @room.messages.order(created_at: :asc)
         
         render 'index'
     end
+
+    def get_current_user
+        @users = User.all
+        @current_user = @users.find_by email: session[:email]
+        @current_user
+    end 
     
     def friends_search 
         @users = User.all
         @message_friends = @users.select do |user|
-            $current_user.friends.find_by(friend_id: user.id)
+            @current_user.friends.find_by(friend_id: user.id)
         end
         @message_friends
     end
