@@ -20,12 +20,11 @@ class ProfileController < ApplicationController
         firstname = params[:firstname]
         surname = params[:surname]
         nickname = params[:nickname]
-        password = params[:password]
 
         avatar = params[:avatar]
         if(@users.find_by(nickname: nickname).nil?)
-            $current_user.update(firstname: firstname, surname: surname,nickname: nickname,avatar: avatar)
-            $current_user.save
+            @current_user.update(firstname: firstname, surname: surname,nickname: nickname,avatar: avatar)
+            @current_user.save
             redirect_to edit_path
         else
             redirect_to home_path

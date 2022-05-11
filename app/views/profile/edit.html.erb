@@ -6,9 +6,9 @@
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                 <%= form_with url: update_user_path(@current_user),local:true,method: :post do |form| %>
                     <% if @current_user.avatar.attached? %>
-                        <%= image_tag(@current_user.avatar, :alt => "logo",height:64,width:64,class:"rounded-circle mt-5 mb-2")  %>
+                        <%= image_tag(@current_user.avatar, :alt => "logo",height:128,width:128,class:"rounded-circle mt-5 mb-2")  %>
                     <% else %>
-                        <%= image_tag("default.jpg", :alt => "logo",height:64,width:64,class:"rounded-circle mt-5 mb-2")  %>
+                        <%= image_tag("default.jpg", :alt => "logo",height:128,width:128,class:"rounded-circle mt-5 mb-2")  %>
                     <% end %>
                     <div class="image-upload">
                         <label for="avatar">
@@ -16,7 +16,7 @@
                         </label>
                         <%= form.file_field :avatar, accept:'image/*' %>
                     </div>
-                        <p class="h6"><%= @current_user.firstname %>&nbsp;&nbsp;<%= $current_user.surname %></p>
+                        <p class="h6"><%= @current_user.firstname %>&nbsp;&nbsp;<%= @current_user.surname %></p>
                         <p class="h6"><%= @current_user.nickname %> </p>
                         <p class="text-white-50 h6"><%= @current_user.email %> </p>
                     </div>
